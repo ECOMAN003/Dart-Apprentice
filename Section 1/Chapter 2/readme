@@ -1,0 +1,8 @@
+Learned about comments
+//This is a comment
+/**This is a multiple line comment**/
+
+
+Skipped out on arithmetic operations, because they're practically same as in C.
+Same goes for math functions, which are apparently more than i had seen in C.
+
