@@ -6,3 +6,4 @@ Learned about comments
 Skipped out on arithmetic operations, because they're practically same as in C.
 Same goes for math functions, which are apparently more than i had seen in C.
 
+Also looked at type inference and constants
