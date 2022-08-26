@@ -1,3 +1,4 @@
+
 void main() {
   // String myName = personName('Agen', 'Persis Ekili', title: 'Dr.');
   // print(myName);
@@ -11,9 +12,13 @@ void main() {
   //   final trippled = element * 3;
   //   print(trippled);
   // });
-  people.forEach((name) {
-    print(wonderful(name, 10));
-  });
+
+  // people.forEach((name) {
+  //   print(wonderful(name, 30));
+  // });
+
+  // print(isPrime(9));
+
 }
 
 // String personName(String fristName, String lastName,
@@ -35,10 +40,24 @@ void main() {
 //   };
 // }
 
-const Numbers = [1, 2, 3];
+//const Numbers = [1, 2, 3];
 
-Function wonderful = (String name, int numberPeople) {
-  return 'You Are Wonderful, $name, $numberPeople think so';
-};
+// Function wonderful = (String name, int numberPeople) =>
+//   'You Are Wonderful, $name, $numberPeople think so';
 
-const people = ['Chris', 'Tiffani', 'Pablo'];
+// const people = ['Chris', 'Tiffani', 'Pablo'];
+
+//exercise #1
+
+// bool isPrime(int num) {
+//   if (num <= 2 && num >= 0) {
+//     return true;
+//   }
+//   for (var i = 2; i < num; i++) {
+//     if (num % i == 0) {
+//       return false;
+//     }
+//   }
+//   return true;
+// }
+
