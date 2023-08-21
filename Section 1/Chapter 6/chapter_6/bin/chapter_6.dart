@@ -25,19 +25,19 @@ void main() {
 //   }
 // }
 
-// class Password {
-//   String value = '';
+class Password {
+  String value = '';
 
-//   @override
-//   String toString() {
-//     return value;
-//   }
+  @override
+  String toString() {
+    return value;
+  }
 
-//   bool isValid() {
-//     if (value.length > 8) {
-//       return true;
-//     }
-//     return false;
-//   }
-// }
+  bool isValid() {
+    if (value.length > 8) {
+      return true;
+    }
+    return false;
+  }
+}
 
