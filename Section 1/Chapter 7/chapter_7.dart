@@ -16,9 +16,13 @@ void main(List<String> args) {
   //bool flowerIsBeautiful = isBeautiful('flower')!;
   bool flowerIsBeautiful = isBeautiful('flower') as bool;
 
-  User user = User()
-    ?..name = 'Baby'
-    ..id = 0;
+  // User user = User()
+  //   ?..name = 'Baby'
+  //   ..id = 0;
+
+  List<int>? myList = [1, 2, 3];
+  myList = null;
+  print(myList);
 }
 
 //Null Safety is Bae : Little function
@@ -43,7 +47,7 @@ bool? isBeautiful(String? item) {
   return null;
 }
 
-class User {
-  String? name;
-  int? id;
-}
+// class User {
+//   String? name;
+//   int? id;
+// }
