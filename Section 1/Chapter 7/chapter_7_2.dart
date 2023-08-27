@@ -5,8 +5,7 @@
 import 'dart:math';
 
 void main(List<String> args) {
-  int result = randomly()!;
-  print(result);
+  int? result = randomly();
   print(result);
 }
 
