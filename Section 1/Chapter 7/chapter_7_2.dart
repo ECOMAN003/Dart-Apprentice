@@ -16,3 +16,10 @@ int? randomly() {
   }
   return 42;
 }
+
+//exercise 2
+class Name {
+  String? surname;
+  String? givenName;
+  late final String? fullName;
+}
