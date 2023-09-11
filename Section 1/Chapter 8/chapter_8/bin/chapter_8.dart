@@ -2,6 +2,27 @@ void main(List<String> arguments) {
   //print(desserts);
   //print(candy);
   print(bigDeserts);
+
+//exercises
+//#1
+  List<String> months = [];
+  months.add('January');
+  months.add('February');
+  months.add('March');
+  months.add('April');
+  months.add('May');
+  months.add('June');
+  months.add('July');
+  months.add('August');
+  months.add('September');
+  months.add('October');
+  months.add('November');
+  months.add('December');
+
+  final List<String> immutableMonths = List.unmodifiable(months);
+  var upperCaseMonths = [for(var month in months) month.toUpperCase()];
+
+  print(upperCaseMonths);
 }
 
 const pastries = ['cookies', 'croissants'];
@@ -22,13 +43,9 @@ const candy = [
 ];
 
 //collection for
-const deserts = [
-  'gobi',
-  'sahara',
-  'arctic'
-];
+const deserts = ['gobi', 'sahara', 'arctic'];
 
 var bigDeserts = [
   'ARABIAN',
-  for(var desert in deserts) desert.toUpperCase(),
+  for (var desert in deserts) desert.toUpperCase(),
 ];
