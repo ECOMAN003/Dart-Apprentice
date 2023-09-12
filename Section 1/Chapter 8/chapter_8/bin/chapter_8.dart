@@ -98,3 +98,24 @@ void mapsExercises() {
     print('${entry.key} -> ${entry.value}');
   }
 }
+
+//mapping over collection
+void overCollection() {
+  const numbers = [1, 2, 3, 4];
+  //mapping over collection
+  final squares = numbers.map((number) => number * number);
+  squares.toList();
+
+  //filtering over collection
+  final evens = squares.where((square) => square.isEven);
+
+  //consolidating a collection
+  const amounts = [199, 299, 399, 199, 499];
+  final total = amounts.reduce((sum, element) => sum + element);
+
+  final totals = amounts.fold(
+    0,
+    (int sum, element) => sum + element,
+    );
+  
+}
