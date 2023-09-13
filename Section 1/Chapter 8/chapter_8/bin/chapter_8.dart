@@ -24,7 +24,9 @@ void main(List<String> arguments) {
   final List<String> immutableMonths = List.unmodifiable(months);
   var upperCaseMonths = [for (var month in months) month.toUpperCase()];
 
-  mapsExercises();
+  //mapsExercises();
+  //overCollection();
+  miniExercise();
 }
 
 const pastries = ['cookies', 'croissants'];
@@ -45,7 +47,7 @@ const candy = [
 ];
 
 //collection for
-const deserts = ['gobi', 'sahara', 'arctic'];
+final deserts = ['gobi', 'sahara', 'arctic'];
 
 var bigDeserts = [
   'ARABIAN',
@@ -116,6 +118,23 @@ void overCollection() {
   final totals = amounts.fold(
     0,
     (int sum, element) => sum + element,
-    );
-  
+  );
+
+  //custom sorting
+  deserts.sort((d1, d2) => d1.length.compareTo(d2.length));
+
+  //combining higher order methods
+  const desserts = ['cake', 'pie', 'donuts', 'brownies'];
+  final bigTallDeserts = desserts
+      .where((dessert) => dessert.length > 5)
+      .map((dessert) => dessert.toUpperCase());
+  print(bigTallDeserts);
+}
+
+//mini exercices
+void miniExercise() {
+  final scores = [89, 77, 46, 93, 82, 67, 32, 88];
+  scores.sort();
+  final scoressort = scores.where((element) => element >= 80 && element <= 90);
+  print(scoressort);
 }
