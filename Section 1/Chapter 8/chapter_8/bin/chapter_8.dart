@@ -27,7 +27,7 @@ void main(List<String> arguments) {
   //mapsExercises();
   //overCollection();
   //miniExercise();
-  print(challenge1('my name is'));
+  print(challenge1('my name is Heman Ekom Ekili'));
 }
 
 const pastries = ['cookies', 'croissants'];
@@ -151,9 +151,10 @@ List<String> challenge1(String paragraph) {
       Buffer = '';
       i++;
     } else {
-      Buffer + paragraph[i];
+      Buffer += paragraph[i];
       i++;
     }
   }
+  stringList.add(Buffer);
   return stringList;
 }
