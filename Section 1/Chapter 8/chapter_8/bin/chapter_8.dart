@@ -26,7 +26,8 @@ void main(List<String> arguments) {
 
   //mapsExercises();
   //overCollection();
-  miniExercise();
+  //miniExercise();
+  print(challenge1('my name is'));
 }
 
 const pastries = ['cookies', 'croissants'];
@@ -137,4 +138,22 @@ void miniExercise() {
   scores.sort();
   final scoressort = scores.where((element) => element >= 80 && element <= 90);
   print(scoressort);
+}
+
+//major exercises
+List<String> challenge1(String paragraph) {
+  String Buffer = '';
+  List<String> stringList = [];
+
+  for (var i = 0; i < paragraph.length;) {
+    if (paragraph[i] == ' ') {
+      stringList.add(Buffer);
+      Buffer = '';
+      i++;
+    } else {
+      Buffer + paragraph[i];
+      i++;
+    }
+  }
+  return stringList;
 }
