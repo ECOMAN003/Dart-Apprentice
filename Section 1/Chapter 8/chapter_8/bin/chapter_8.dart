@@ -27,7 +27,9 @@ void main(List<String> arguments) {
   //mapsExercises();
   //overCollection();
   //miniExercise();
-  print(challenge1('my name is Heman Ekom Ekili'));
+  //print(challenge1('my name is Heman Ekom Ekili'));
+  //print(challenge2('my name is Heman Ekom Ekili'));
+  print(challenge3(users));
 }
 
 const pastries = ['cookies', 'croissants'];
@@ -157,4 +159,39 @@ List<String> challenge1(String paragraph) {
   }
   stringList.add(Buffer);
   return stringList;
+}
+
+//challenge 2: Counting on you
+Map<String, int> challenge2(String paragraph) {
+  paragraph = paragraph.toLowerCase();
+  print(paragraph);
+  Map<String, int> returnMap = {};
+  for (var i = 0; i < paragraph.length; i++) {
+    if (paragraph[i] == ' ') {
+      continue;
+    }
+    if (returnMap.containsKey(paragraph[i])) {
+      returnMap.update(paragraph[i], (value) => value += 1);
+    } else {
+      returnMap.putIfAbsent(paragraph[i], () => 1);
+    }
+  }
+  return returnMap;
+}
+
+//challenge3 : Mapping Users
+class User {
+  User(this.name, this.id);
+  String name;
+  int id;
+}
+
+List<User> users = [User('Heman', 0), User('Jan', 1), User('Randy', 2)];
+
+Map<String, int> challenge3(List<User> users) {
+  Map<String, int> returnMap = {};
+  for (var element in users) {
+    returnMap.putIfAbsent(element.name, () => element.id);
+  }
+  return returnMap;
 }
