@@ -144,20 +144,20 @@ void miniExercise() {
 
 //major exercises
 List<String> challenge1(String paragraph) {
-  String Buffer = '';
+  String buffer = '';
   List<String> stringList = [];
 
   for (var i = 0; i < paragraph.length;) {
     if (paragraph[i] == ' ') {
-      stringList.add(Buffer);
-      Buffer = '';
+      stringList.add(buffer);
+      buffer = '';
       i++;
     } else {
-      Buffer += paragraph[i];
+      buffer += paragraph[i];
       i++;
     }
   }
-  stringList.add(Buffer);
+  stringList.add(buffer);
   return stringList;
 }
 
