@@ -4,7 +4,7 @@ import 'package:http/http.dart' as http;
 
 Future<void> main() async {
   try {
-    final url = 'https://jsonplaceholder.typicode.com/todos/1';
+/** */ final url = 'https://jsonplaceholder.typicode.com/todos/1';
     final parsedUrl = Uri.parse(url);
     final response = await http.get(parsedUrl);
     final statusCode = response.statusCode;
@@ -23,7 +23,8 @@ Future<void> main() async {
   } on FormatException catch (error) {
     print(error);
   }
-
+  longerStream();
+  //streamFunction();
   //testFuture();
   //tryCatchBlocks();
 }
@@ -115,4 +116,19 @@ void miniExercises() {
   } catch (error) {
     print(error);
   }
+}
+
+//streams
+Future<void> streamFunction() async {
+  final file = File('assets/text.txt');
+  final contents = await file.readAsString();
+  print(contents);
+}
+
+Future<void> longerStream() async {
+  final file = File('assets/text_long.txt');
+  final stream = file.openRead();
+  stream.listen((data) {
+    print(data.length);
+  });
 }
