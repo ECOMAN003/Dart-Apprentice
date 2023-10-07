@@ -3,17 +3,25 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 
 Future<void> main() async {
-  final url = 'https://jsonplaceholder.typicode.com/todos/1';
-  final parsedUrl = Uri.parse(url);
-  final response = await http.get(parsedUrl);
-  final statusCode = response.statusCode;
-  if (statusCode == 200) {
-    final rawJsonString = response.body;
-    final jsonMap = jsonDecode(rawJsonString);
-    final todo = Todo.fromJson(jsonMap);
-    print(todo);
-  } else {
-    throw HttpException('$statusCode');
+  try {
+    final url = 'https://jsonplaceholder.typicode.com/todos/1';
+    final parsedUrl = Uri.parse(url);
+    final response = await http.get(parsedUrl);
+    final statusCode = response.statusCode;
+    if (statusCode == 200) {
+      final rawJsonString = response.body;
+      final jsonMap = jsonDecode(rawJsonString);
+      final todo = Todo.fromJson(jsonMap);
+      print(todo);
+    } else {
+      throw HttpException('$statusCode');
+    }
+  } on SocketException catch (error) {
+    print(error);
+  } on HttpException catch (error) {
+    print(error);
+  } on FormatException catch (error) {
+    print(error);
   }
 
   //testFuture();
@@ -93,5 +101,18 @@ class Todo {
         'id: $id\n'
         'title: $title\n'
         'completed: $completed';
+  }
+}
+
+//mini exercise for async
+void miniExercises() {
+  try {
+    final message = Future<String>.delayed(
+      Duration(seconds: 2),
+      () => 'I am from the future',
+    );
+    print(message);
+  } catch (error) {
+    print(error);
   }
 }
