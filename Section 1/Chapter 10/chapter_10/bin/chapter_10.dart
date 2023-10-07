@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:async';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 
@@ -23,10 +24,11 @@ Future<void> main() async {
   } on FormatException catch (error) {
     print(error);
   }
-  longerStream();
+  //longerStream();
   //streamFunction();
   //testFuture();
   //tryCatchBlocks();
+  cancelStream();
 }
 
 //Examples of a future
@@ -128,7 +130,47 @@ Future<void> streamFunction() async {
 Future<void> longerStream() async {
   final file = File('assets/text_long.txt');
   final stream = file.openRead();
-  stream.listen((data) {
-    print(data.length);
-  });
+  stream.listen(
+    (data) {
+      print(data.length);
+    },
+    onError: (error) {
+      print(error);
+    },
+    onDone: () {
+      print('All finished');
+    },
+  );
+}
+
+//another version of above function
+Future<void> longerStream2() async {
+  try {
+    final file = File('assets/text_long.txt');
+    final stream = file.openRead();
+    await for (var data in stream) {
+      print(data.length);
+    }
+  } on Exception catch (error) {
+    print(error);
+  } finally {
+    print('All finished');
+  }
+}
+
+//cancelling a stream
+Future<void> cancelStream() async {
+  final file = File('assets/text_long.txt');
+  final stream = file.openRead();
+  StreamSubscription<List<int>>? subscription;
+  subscription = stream.listen(
+    (data) {
+      print(data.length);
+      subscription?.cancel();
+    },
+    cancelOnError: true,
+    onDone: () {
+      print('All finished');
+    },
+  );
 }
