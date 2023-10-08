@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'dart:io';
 import 'package:http/http.dart' as http;
+import 'dart:isolate';
 
 Future<void> main() async {
   try {
@@ -28,7 +29,12 @@ Future<void> main() async {
   //streamFunction();
   //testFuture();
   //tryCatchBlocks();
-  cancelStream();
+  //cancelStream();
+  //transformStream();
+  //transformStream2();
+  //streamExercises();
+  print("Ok I'm counting...");
+  print(playHideAndSeekTheLongVersion());
 }
 
 //Examples of a future
@@ -64,7 +70,6 @@ Future<void> tryCatchBlocks() async {
       Duration(seconds: 1),
       () => 42,
     );
-    throw Exception('There was an error');
     print('Value: $value');
   } catch (error) {
     print(error);
@@ -173,4 +178,63 @@ Future<void> cancelStream() async {
       print('All finished');
     },
   );
+}
+
+//transforming a stream
+Future<void> transformStream() async {
+  final file = File('assets/text.txt');
+  final stream = file.openRead();
+  stream.listen((data) {
+    print(data);
+  });
+}
+
+//transforming a stream into readable data
+Future<void> transformStream2() async {
+  final file = File('assets/text.txt');
+  final stream = file.openRead();
+  await for (var data in stream.transform(utf8.decoder)) {
+    print(data);
+  }
+}
+
+//mini-exercises for streams heheh
+Future<void> streamExercises() async {
+  final myStream = Stream<int>.periodic(
+    Duration(seconds: 1),
+    (value) => value,
+  ).take(10);
+  await for (var data in myStream) {
+    print(data);
+  }
+}
+
+//isolates
+void playHideAndSeekTheLongVersion(SendPort sendPort) {
+  var counting = 0;
+  for (var i = 0; i <= 10000000000; i++) {
+    counting = i;
+  }
+  sendPort.send('$counting! Ready or not, Here I come');
+}
+
+//receive port
+Future<void> receivePort() async {
+  //1
+  final receivePort = ReceivePort();
+
+  //2
+  final isolate = await Isolate.spawn(
+    playHideAndSeekTheLongVersion,
+    //3
+    receivePort.sendPort,
+  );
+
+  //4
+  receivePort.listen((message) {
+    print(message);
+    //5
+    receivePort.close();
+    isolate.kill();
+  });
 }
