@@ -1,6 +1,6 @@
 //challenge1: Whose turn is it?
 void challenge1() {
-  print('! synchronous');
+  print('1 synchronous');
   Future(() => print('2 event queue')).then(
     (value) => print('3 synchronous'),
   );
@@ -17,4 +17,12 @@ void challenge1() {
         () => print('10 microtask queue'),
       ));
   print('11 synchronous');
+}
+
+/**In summary no futures execute first > then microtasks next > then normal futures */
+//in fact idk
+
+//challenge 2
+class CommentData{
+  
 }
