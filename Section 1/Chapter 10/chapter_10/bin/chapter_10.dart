@@ -3,12 +3,11 @@ import 'dart:async';
 import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'dart:isolate';
-
 import 'challenges.dart';
 
 Future<void> main() async {
   try {
-/** */ final url = 'https://jsonplaceholder.typicode.com/todos/1';
+    final url = 'https://jsonplaceholder.typicode.com/todos/1';
     final parsedUrl = Uri.parse(url);
     final response = await http.get(parsedUrl);
     final statusCode = response.statusCode;
@@ -37,7 +36,8 @@ Future<void> main() async {
   //streamExercises();
   print("Ok I'm counting...");
   //print(playHideAndSeekTheLongVersion());
-  challenge1();
+  //challenge1();
+  challenge2();
 }
 
 //Examples of a future

@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:io';
+import 'package:http/http.dart' as http;
+
 //challenge1: Whose turn is it?
 void challenge1() {
   print('1 synchronous');
@@ -23,6 +27,49 @@ void challenge1() {
 //in fact idk
 
 //challenge 2
-class CommentData{
-  
+Future<void> challenge2() async {
+  try {
+    final url = 'https://jsonplaceholder.typicode.com/comments';
+    final parsedUrl = Uri.parse(url);
+    final response = await http.get(parsedUrl);
+    final statusCode = response.statusCode;
+    if (statusCode == 200) {
+      final rawJsonString = response.body;
+      final jsonMap = jsonDecode(rawJsonString);
+      final comment = Comment.fromJson(jsonMap);
+      print(comment);
+    } else {
+      throw Exception('$statusCode');
+    }
+  } on SocketException catch (error) {
+    print(error);
+  } on HttpException catch (error) {
+    print(error);
+  } on FormatException catch (error) {
+    print(error);
+  }
+}
+
+class Comment {
+  Comment(
+      {required this.postId,
+      required this.id,
+      required this.name,
+      required this.email,
+      required this.body});
+
+  factory Comment.fromJson(List<Map<Comment>> jsonMap) {
+    return Comment(
+        postId: jsonMap['postId'] as int,
+        id: jsonMap['id'] as int,
+        name: jsonMap['name'] as String,
+        email: jsonMap['email'] as String,
+        body: jsonMap['body'] as String);
+  }
+
+  final int postId;
+  final int id;
+  final String name;
+  final String email;
+  final String body;
 }
