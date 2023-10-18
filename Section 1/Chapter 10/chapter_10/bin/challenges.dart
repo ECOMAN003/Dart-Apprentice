@@ -58,13 +58,21 @@ class Comment {
       required this.email,
       required this.body});
 
-  factory Comment.fromJson(List<Map<Comment>> jsonMap) {
-    return Comment(
-        postId: jsonMap['postId'] as int,
-        id: jsonMap['id'] as int,
-        name: jsonMap['name'] as String,
-        email: jsonMap['email'] as String,
-        body: jsonMap['body'] as String);
+  factory Comment.fromJson(List<Map<String, Object?>> jsonMap) {
+    List<Comment> comments = [];
+    jsonMap.forEach(
+      (element) {
+        Comment comment = Comment(
+            postId: element['postId'] as int,
+            id: element['id'] as int,
+            name: element['name'] as String,
+            email: element['email'] as String,
+            body: element['body'] as String);
+        comments.add(comment);
+      },
+    );
+
+    return comments;
   }
 
   final int postId;
