@@ -36,7 +36,7 @@ Future<void> challenge2() async {
     if (statusCode == 200) {
       final rawJsonString = response.body;
       final jsonMap = jsonDecode(rawJsonString);
-      final comment = Comment.fromJson(jsonMap);
+      final comment = CommentList.fromJson(jsonMap);
       print(comment);
     } else {
       throw Exception('$statusCode');
@@ -58,21 +58,14 @@ class Comment {
       required this.email,
       required this.body});
 
-  factory Comment.fromJson(List<Map<String, Object?>> jsonMap) {
-    List<Comment> comments = [];
-    jsonMap.forEach(
-      (element) {
-        Comment comment = Comment(
-            postId: element['postId'] as int,
-            id: element['id'] as int,
-            name: element['name'] as String,
-            email: element['email'] as String,
-            body: element['body'] as String);
-        comments.add(comment);
-      },
+  factory Comment.fromJson(Map<String, dynamic> jsonMap) {
+    return Comment(
+      postId: jsonMap['postId'] as int,
+      id: jsonMap['id'] as int,
+      name: jsonMap['name'] as String,
+      email: jsonMap['email'] as String,
+      body: jsonMap['body'] as String,
     );
-
-    return comments;
   }
 
   final int postId;
@@ -80,4 +73,19 @@ class Comment {
   final String name;
   final String email;
   final String body;
+}
+
+class CommentList {
+  final List<Comment> commentLists;
+
+  CommentList({
+    required this.commentLists,
+  });
+
+  factory CommentList.fromJson(List<dynamic> jsonList) {
+    List<Comment> returnList = [];
+    returnList = jsonList.map((e) => Comment.fromJson(e)).toList();
+    return CommentList(commentLists: returnList);
+    
+  }
 }
